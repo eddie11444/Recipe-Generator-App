@@ -88,6 +88,11 @@ def main():
     st.sidebar.header("Select Meal Type")
     meal_type = st.sidebar.selectbox("Select meal type", options=["Breakfast", "Lunch", "Dinner"])
 
+    # Include Instructions option
+    st.sidebar.header("Include Instructions")
+    include_instructions = st.sidebar.radio("Include instructions?", options=["Yes", "No"], index=0, key="include_instructions")
+
+
     # Include Ingredients option
     st.sidebar.header("Include Ingredients")
     include_ingredients = st.sidebar.radio("Include ingredients?", options=["Yes", "No"], index=0, key="include_ingredients")
@@ -121,10 +126,11 @@ def main():
         st.subheader("Recipe Name:")
         st.write(recipe_name)
 
-    # Display the generated recipe instructions
-    if recipe_instructions:
-        st.subheader("Instructions & Ingredients:")
+    # Display the generated recipe instructions if "Include Instructions" is set to "Yes"
+    if include_instructions == "Yes" and recipe_instructions:
+        st.subheader("Instructions And Ingredients:")
         st.write(recipe_instructions)
+
 
     # Search for related YouTube videos using the recipe name
     if recipe_name:
